@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/tzenz/fdf/srcs/fdf/drawline.c
+fdf.h
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+../libft/include/libft.h
+/Users/tzenz/fdf/srcs/libft/include/libft.h
+../minilibx_macos/mlx.h
+/Users/tzenz/fdf/srcs/minilibx_macos/mlx.h
+stdio.h
+-
+
+/Users/tzenz/fdf/srcs/fdf/readfile.c
+fdf.h
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+
+/Users/tzenz/fdf/srcs/libft/include/libft.h
+string.h
+-
+unistd.h
+-
+stdlib.h
+-
+fcntl.h
+-
+
+/Users/tzenz/fdf/srcs/minilibx_macos/mlx.h
+

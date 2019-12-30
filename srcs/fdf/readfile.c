@@ -21,7 +21,7 @@ void		ft_putsnbr(file *st)
 	while (i < st->hight)
 	{
 		j = 0;
-		while (j < st->length)
+		while (j < st->width)
 		{
 			ft_putnbr(st->s[i][j++]);
 			if (st->s[i][j] < 10)
@@ -46,7 +46,7 @@ void		s_int(file *st, char **argv, int j, int n)
 	st->s = (int **)ft_memalloc(sizeof(int *) * st->hight);
 	while (i < st->hight)
 	{
-		st->s[i] = (int *)ft_memalloc(sizeof(int) * st->length);
+		st->s[i] = (int *)ft_memalloc(sizeof(int) * st->width);
 		get_next_line(fd, &line);
 		buf = ft_strsplit(line, ' ');
 		while (buf[n])
@@ -93,6 +93,6 @@ void		s_hight(file *st, char **argv)
 		free(line);
 	}
 	close(fd);
-	st->length = s_leght(argv);
+	st->width = s_leght(argv);
 	s_int(st, argv, 0, 0);
 }

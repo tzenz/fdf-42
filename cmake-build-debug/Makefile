@@ -123,32 +123,86 @@ fdf/fast:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/build
 .PHONY : fdf/fast
 
-srcs/fdf/drawline.o: srcs/fdf/drawline.c.o
+srcs/fdf/drawimg.o: srcs/fdf/drawimg.c.o
 
-.PHONY : srcs/fdf/drawline.o
+.PHONY : srcs/fdf/drawimg.o
 
 # target to build an object file
-srcs/fdf/drawline.c.o:
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawline.c.o
-.PHONY : srcs/fdf/drawline.c.o
+srcs/fdf/drawimg.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawimg.c.o
+.PHONY : srcs/fdf/drawimg.c.o
 
-srcs/fdf/drawline.i: srcs/fdf/drawline.c.i
+srcs/fdf/drawimg.i: srcs/fdf/drawimg.c.i
 
-.PHONY : srcs/fdf/drawline.i
+.PHONY : srcs/fdf/drawimg.i
 
 # target to preprocess a source file
-srcs/fdf/drawline.c.i:
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawline.c.i
-.PHONY : srcs/fdf/drawline.c.i
+srcs/fdf/drawimg.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawimg.c.i
+.PHONY : srcs/fdf/drawimg.c.i
 
-srcs/fdf/drawline.s: srcs/fdf/drawline.c.s
+srcs/fdf/drawimg.s: srcs/fdf/drawimg.c.s
 
-.PHONY : srcs/fdf/drawline.s
+.PHONY : srcs/fdf/drawimg.s
 
 # target to generate assembly for a file
-srcs/fdf/drawline.c.s:
-	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawline.c.s
-.PHONY : srcs/fdf/drawline.c.s
+srcs/fdf/drawimg.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawimg.c.s
+.PHONY : srcs/fdf/drawimg.c.s
+
+srcs/fdf/drawpix.o: srcs/fdf/drawpix.c.o
+
+.PHONY : srcs/fdf/drawpix.o
+
+# target to build an object file
+srcs/fdf/drawpix.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.o
+.PHONY : srcs/fdf/drawpix.c.o
+
+srcs/fdf/drawpix.i: srcs/fdf/drawpix.c.i
+
+.PHONY : srcs/fdf/drawpix.i
+
+# target to preprocess a source file
+srcs/fdf/drawpix.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.i
+.PHONY : srcs/fdf/drawpix.c.i
+
+srcs/fdf/drawpix.s: srcs/fdf/drawpix.c.s
+
+.PHONY : srcs/fdf/drawpix.s
+
+# target to generate assembly for a file
+srcs/fdf/drawpix.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.s
+.PHONY : srcs/fdf/drawpix.c.s
+
+srcs/fdf/main.o: srcs/fdf/main.c.o
+
+.PHONY : srcs/fdf/main.o
+
+# target to build an object file
+srcs/fdf/main.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/main.c.o
+.PHONY : srcs/fdf/main.c.o
+
+srcs/fdf/main.i: srcs/fdf/main.c.i
+
+.PHONY : srcs/fdf/main.i
+
+# target to preprocess a source file
+srcs/fdf/main.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/main.c.i
+.PHONY : srcs/fdf/main.c.i
+
+srcs/fdf/main.s: srcs/fdf/main.c.s
+
+.PHONY : srcs/fdf/main.s
+
+# target to generate assembly for a file
+srcs/fdf/main.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/main.c.s
+.PHONY : srcs/fdf/main.c.s
 
 srcs/fdf/readfile.o: srcs/fdf/readfile.c.o
 
@@ -2184,9 +2238,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... fdf"
-	@echo "... srcs/fdf/drawline.o"
-	@echo "... srcs/fdf/drawline.i"
-	@echo "... srcs/fdf/drawline.s"
+	@echo "... srcs/fdf/drawimg.o"
+	@echo "... srcs/fdf/drawimg.i"
+	@echo "... srcs/fdf/drawimg.s"
+	@echo "... srcs/fdf/drawpix.o"
+	@echo "... srcs/fdf/drawpix.i"
+	@echo "... srcs/fdf/drawpix.s"
+	@echo "... srcs/fdf/main.o"
+	@echo "... srcs/fdf/main.i"
+	@echo "... srcs/fdf/main.s"
 	@echo "... srcs/fdf/readfile.o"
 	@echo "... srcs/fdf/readfile.i"
 	@echo "... srcs/fdf/readfile.s"

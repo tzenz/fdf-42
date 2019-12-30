@@ -8,8 +8,10 @@ include_directories(srcs/libft/include)
 include_directories(srcs/minilibx_macos)
 
 add_executable(fdf
-        srcs/fdf/drawline.c
+        srcs/fdf/drawimg.c
+        srcs/fdf/drawpix.c
         srcs/fdf/fdf.h
+        srcs/fdf/main.c
         srcs/fdf/readfile.c
         srcs/libft/include/libft.h
         srcs/libft/ft_atoi.c

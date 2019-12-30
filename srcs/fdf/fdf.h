@@ -20,8 +20,8 @@
 
 # define MOD(a) ((a > 0) ? a : -a)
 # define MAX(a,b) ((a > b) ? a : b)
-# define WIN_WIDTH 800
-# define WIN_HIGHT 600
+# define WIN_WIDTH 2000
+# define WIN_HIGHT 1200
 
 
 typedef struct		s_file
@@ -31,8 +31,9 @@ typedef struct		s_file
 	int				hight;
 	float 			zoom;
 	int 			color;
-	int 			swift_x;
-	int 			swift_y;
+	double			angle_x;
+	double 			angle_y;
+	double 			angle_z;
 
 	void			*mlx;
 	void			*win;
@@ -41,18 +42,25 @@ typedef struct		s_file
 
 	float 			i;
 	float 			j;
-	float 			x;
-	float			y;
+	double			x;
+	double			y;
+	float 			ziso;
+	int 			button;
 }					file;
 
 //void		drawimage(int x, int y, int x1, int y1, file *st);
 //void		draw(file *st);
 //void		isometric(int *x, int *y, int z);
 
-void		rotateimage(float *x, float *y, float *z);
+void		rotate_x(float *y, float *z, file *st);
+void		rotate_z(float *x, float *y, file *st);
+void		rotate_y(float *x, float *z, file *st);
+
+int 		mouse_press(int button, int x, int y, file *st);
+void		putclean(file *st);
 void		drawimage(float x, float y, float x1, float y1, file *st);
 void		draw(file *st);
-void		isometric(float *x, float *y, float z);
+void		isometric(float *x, float *y, file *st, float z);
 
 int 		drawline(float x, float y, float x1, float y1, file *st);
 void		s_hight(file *st, char **argv);

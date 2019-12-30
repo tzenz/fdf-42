@@ -12,29 +12,17 @@
 
 #include "fdf.h"
 
-void		isometric(float *x, float *y, float z)
+void		isometric(float *x, float *y, file *st, float z)
 {
 	float 	pre_x;
 	float 	pre_y;
 
 	if (z)
-		z = 2;
+		z = st->ziso;
 	pre_x = *x;
 	pre_y = *y;
 	*x = (pre_x - pre_y) * (float)cos(0.523599);
 	*y = -z + (pre_x + pre_y) * (float)sin(0.523599);
-//	printf("cos - %f sin - %f\n", cos(0.523599), sin(0.523599));
-}
-
-void		rotateimage(float *x, float *y, float *z)
-{
-	float	pre_x;
-	float	pre_y;
-
-	pre_x = *x;
-	pre_y = *y;
-	*y = pre_y * (float)cos(0.523599) + *z * (float)sin(0.523599);
-	*z = -pre_y * (float)sin(0.523599) + *z * (float)cos(0.523599);
 }
 
 void		drawimage(float x, float y, float x1, float y1, file *st)
@@ -52,30 +40,23 @@ void		drawimage(float x, float y, float x1, float y1, file *st)
 	z1 = st->s[(int)y1][(int)x1];
 	st->color = (z || z1) ? 0xF2F2F2 : 0x447B87;
 	b1 = st->img_data;
-	isometric(&x, &y, (float)z);
-	isometric(&x1, &y1, (float)z1);
 
-//	if (st->x || st->y)
-//	{
-//		rotateimage(&x, &y, &z);
-//		rotateimage(&x1, &y1, &z);
-//
-//		ft_putchar('\n');
-//		ft_putnbr((int)st->x);
-//		ft_putchar('\n');
-//		ft_putnbr((int)st->y);
-//		ft_putchar('\n');
-//
+	isometric(&x, &y, st, (float)z);
+	isometric(&x1, &y1, st, (float)z1);
+
+
+//	rotate_x(&y, &z, st);
+//	rotate_x(&y1, &z1, st);
+	rotate_y(&x, &z, st);
+	rotate_y(&x1, &z1, st);
+	rotate_z(&x, &y, st);
+	rotate_z(&x1, &y1, st);
 //	}
+	st->i = (x * 4 + 4 * WIN_WIDTH * y) * st->zoom;
+	st->j = (x1 * 4 + 4 * WIN_WIDTH * y1) * st->zoom;
 
-	st->i = (x * 4 + 4 * WIN_WIDTH * y) * 5;
-	st->j = (x1 * 4 + 4 * WIN_WIDTH * y1) * 5;
-
-	if (st->x || st->y)
-	{
-		st->i += 8400;
-		st->j += 8400;
-	}
+	st->i += (99000 * 3) * 3;
+	st->j += (99000 * 3) * 3;
 
 	count = 1;
 	wcount = 0;
@@ -91,6 +72,8 @@ void		drawimage(float x, float y, float x1, float y1, file *st)
 	x_step /= max;
 	y_step /= max;
 	y = (y > 0) ? y * WIN_WIDTH : y;
+	if (x < 0 || y < 0 || x1 < 0 || y1 < 0)
+		return;
 	while ((int)(x + y) < (int)st->j)
 	{
 		b1[(int)(x + y)] = st->color;
@@ -109,7 +92,6 @@ void		draw(file *st)
 	float 	y;
 
 	y = 0;
-	ft_putstr("  sss   \n");
 	while (y < (float)st->hight)
 //	while (y < (float)st->hight && y < 1)
 	{

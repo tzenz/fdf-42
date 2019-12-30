@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.o"
   "CMakeFiles/fdf.dir/srcs/fdf/main.c.o"
   "CMakeFiles/fdf.dir/srcs/fdf/readfile.c.o"
+  "CMakeFiles/fdf.dir/srcs/fdf/rotate.c.o"
   "CMakeFiles/fdf.dir/srcs/libft/ft_atoi.c.o"
   "CMakeFiles/fdf.dir/srcs/libft/ft_bzero.c.o"
   "CMakeFiles/fdf.dir/srcs/libft/ft_countptr.c.o"

@@ -231,6 +231,33 @@ srcs/fdf/readfile.c.s:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/readfile.c.s
 .PHONY : srcs/fdf/readfile.c.s
 
+srcs/fdf/rotate.o: srcs/fdf/rotate.c.o
+
+.PHONY : srcs/fdf/rotate.o
+
+# target to build an object file
+srcs/fdf/rotate.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/rotate.c.o
+.PHONY : srcs/fdf/rotate.c.o
+
+srcs/fdf/rotate.i: srcs/fdf/rotate.c.i
+
+.PHONY : srcs/fdf/rotate.i
+
+# target to preprocess a source file
+srcs/fdf/rotate.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/rotate.c.i
+.PHONY : srcs/fdf/rotate.c.i
+
+srcs/fdf/rotate.s: srcs/fdf/rotate.c.s
+
+.PHONY : srcs/fdf/rotate.s
+
+# target to generate assembly for a file
+srcs/fdf/rotate.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/rotate.c.s
+.PHONY : srcs/fdf/rotate.c.s
+
 srcs/libft/ft_atoi.o: srcs/libft/ft_atoi.c.o
 
 .PHONY : srcs/libft/ft_atoi.o
@@ -2250,6 +2277,9 @@ help:
 	@echo "... srcs/fdf/readfile.o"
 	@echo "... srcs/fdf/readfile.i"
 	@echo "... srcs/fdf/readfile.s"
+	@echo "... srcs/fdf/rotate.o"
+	@echo "... srcs/fdf/rotate.i"
+	@echo "... srcs/fdf/rotate.s"
 	@echo "... srcs/libft/ft_atoi.o"
 	@echo "... srcs/libft/ft_atoi.i"
 	@echo "... srcs/libft/ft_atoi.s"

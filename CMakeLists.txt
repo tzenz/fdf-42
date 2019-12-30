@@ -13,6 +13,7 @@ add_executable(fdf
         srcs/fdf/fdf.h
         srcs/fdf/main.c
         srcs/fdf/readfile.c
+        srcs/fdf/rotate.c
         srcs/libft/include/libft.h
         srcs/libft/ft_atoi.c
         srcs/libft/ft_bzero.c

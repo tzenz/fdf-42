@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/tzenz/fdf/srcs/fdf/drawpix.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.o"
   "/Users/tzenz/fdf/srcs/fdf/main.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/main.c.o"
   "/Users/tzenz/fdf/srcs/fdf/readfile.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/readfile.c.o"
+  "/Users/tzenz/fdf/srcs/fdf/rotate.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/rotate.c.o"
   "/Users/tzenz/fdf/srcs/libft/ft_atoi.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/libft/ft_atoi.c.o"
   "/Users/tzenz/fdf/srcs/libft/ft_bzero.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/libft/ft_bzero.c.o"
   "/Users/tzenz/fdf/srcs/libft/ft_countptr.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/libft/ft_countptr.c.o"

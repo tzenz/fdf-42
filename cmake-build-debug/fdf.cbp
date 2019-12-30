@@ -101,6 +101,9 @@
 		<Unit filename="/Users/tzenz/fdf/srcs/fdf/readfile.c">
 			<Option target="fdf"/>
 		</Unit>
+		<Unit filename="/Users/tzenz/fdf/srcs/fdf/rotate.c">
+			<Option target="fdf"/>
+		</Unit>
 		<Unit filename="/Users/tzenz/fdf/srcs/libft/ft_atoi.c">
 			<Option target="fdf"/>
 		</Unit>

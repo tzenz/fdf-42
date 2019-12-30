@@ -16,15 +16,6 @@ int 		deal_key(int key, file *st)
 {
 	if (key == 53)
 		exit(0);
-	if (key == 126)
-		st->swift_y -= 15;
-	if (key == 125)
-		st->swift_y += 15;
-	if (key == 123)
-		st->swift_x -= 15;
-	if (key == 124)
-		st->swift_x += 15;
-	if (key == 69)
 		st->zoom += 1;
 	if (key == 78)
 		st->zoom -= 1;
@@ -48,20 +39,20 @@ int 		drawline(float x, float y, float x1, float y1, file *st)
 	z = st->s[(int)y][(int)x];
 	z1 = st->s[(int)y1][(int)x1];
 //---------------zoom-----------
-	x *= st->zoom;
-	y *= st->zoom;
-	x1 *= st->zoom;
-	y1 *= st->zoom;
+	x *= 20;
+	y *= 20;
+	x1 *= 20;
+	y1 *= 20;
 //---------------color----------
 	st->color = (z || z1) ? 0x228B22 : 0xFFE4E1;
 //----------------3D------------
-	isometric(&x, &y, z);
-	isometric(&x1, &y1, z1);
+	isometric(&x, &y, st, (float)z);
+	isometric(&x1, &y1, st, (float)z1);
 //----------------shift---------
-	x += (float)st->swift_x;
-	y += (float)st->swift_y;
-	x1 += (float)st->swift_x;
-	y1 += (float)st->swift_y;
+	x += 300;
+	y += 100;
+	x1 += 300;
+	y1 += 100;
 
 	printf("x - %f y - %f\n x1 - %f y1 - %f\n\n", x, y, x1, y1);
 

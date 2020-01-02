@@ -41,23 +41,32 @@ void		drawimage(float x, float y, float x1, float y1, file *st)
 	st->color = (z || z1) ? 0xF2F2F2 : 0x447B87;
 	b1 = st->img_data;
 
-	isometric(&x, &y, st, (float)z);
-	isometric(&x1, &y1, st, (float)z1);
+//	st->i = (99000 * 3) * 3;
+//	st->j = (99000 * 3) * 3;
 
+	x += st->zoom - st->zoom;
+	y += st->zoom - st->zoom;
+	x1 += st->zoom - st->zoom;
+	y1 += st->zoom - st->zoom;
 
+//	rotate(&x, &y, st);
+//	rotate(&x1, &y1, st);
 //	rotate_x(&y, &z, st);
 //	rotate_x(&y1, &z1, st);
-	rotate_y(&x, &z, st);
-	rotate_y(&x1, &z1, st);
-	rotate_z(&x, &y, st);
-	rotate_z(&x1, &y1, st);
-//	}
-	st->i = (x * 4 + 4 * WIN_WIDTH * y) * st->zoom;
-	st->j = (x1 * 4 + 4 * WIN_WIDTH * y1) * st->zoom;
+//	rotate_y(&x, &z, st);
+//	rotate_y(&x1, &z1, st);
+//	rotate_z(&y, &z, st);
+//	rotate_z(&y1, &z1, st);
 
-	st->i += (99000 * 3) * 3;
-	st->j += (99000 * 3) * 3;
+	isometric(&x, &y, st, (float)z);
+	isometric(&x1, &y1, st, (float)z1);
+	printf("x - %f y - %f x1 - %f y1 - %f\n", x, y, x1, y1);
+	if (x < 0 || y < 0 || x1 < 0 || y1 < 0)
+		return;
+	st->i = ((x * 4 + 4 * WIN_WIDTH * y) * st->zoom);
+	st->j = ((x1 * 4 + 4 * WIN_WIDTH * y1) * st->zoom);
 
+//	printf("i - %f j - %f\n", st->i, st->j);
 	count = 1;
 	wcount = 0;
 
@@ -72,9 +81,8 @@ void		drawimage(float x, float y, float x1, float y1, file *st)
 	x_step /= max;
 	y_step /= max;
 	y = (y > 0) ? y * WIN_WIDTH : y;
-	if (x < 0 || y < 0 || x1 < 0 || y1 < 0)
-		return;
-	while ((int)(x + y) < (int)st->j)
+
+	while ((int)(x + y) < (int)st->j && x + y < MAXPIX)
 	{
 		b1[(int)(x + y)] = st->color;
 		x += x_step;

@@ -24,9 +24,9 @@ int 		mouse_move(int x, int y, file *st)
 	if (st->button > 0)
 		return (0);
 	if (x > st->x)
-		st->angle_y += 0.1;
+		st->angle_y += 0.07;
 	else if (x < st->x)
-		st->angle_y -= 0.1;
+		st->angle_y -= 0.07;
 	st->x = x;
 	st->y = y;
 	putclean(st);

@@ -22,6 +22,7 @@
 # define MAX(a,b) ((a > b) ? a : b)
 # define WIN_WIDTH 2000
 # define WIN_HIGHT 1200
+# define MAXPIX 2400000
 
 
 typedef struct		s_file
@@ -52,6 +53,7 @@ typedef struct		s_file
 //void		draw(file *st);
 //void		isometric(int *x, int *y, int z);
 
+void		rotate(float *x, float *y, file *st);
 void		rotate_x(float *y, float *z, file *st);
 void		rotate_z(float *x, float *y, file *st);
 void		rotate_y(float *x, float *z, file *st);

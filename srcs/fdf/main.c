@@ -38,22 +38,21 @@ int 		key(int key, file *st)
 		st->ziso -= 1;
 
 	if (key == 89)
-		st->angle_x += 0.002;
+		st->angle_x += 0.0002;
 	if (key == 91)
-		st->angle_x -= 0.002;
+		st->angle_x -= 0.0002;
 
 	if (key == 86)
 		st->angle_y += 0.01;
 	if (key == 87)
-		st->angle_y -= 0.05;
+		st->angle_y -= 0.01;
 
 
 	if (key == 83)
 		st->angle_z += 0.0002;
 	if (key == 84)
 		st->angle_z -= 0.0002;
-
-	ft_putnbr(key);
+//	ft_putnbr(key);
 	putclean(st);
 	return (key);
 }
@@ -82,7 +81,7 @@ int 		main(int argc, char **argv)
 	draw(st);
 
 	mlx_hook(st->win, 2, 0, key, st);
-	mlx_hook(st->win, 4, 0, mouse_press, st);
+//	mlx_hook(st->win, 4, 0, mouse_press, st);
 
 	mlx_put_image_to_window(st->mlx, st->win, st->img_ptr, 0, 0);
 

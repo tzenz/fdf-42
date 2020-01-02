@@ -12,6 +12,15 @@
 
 #include "fdf.h"
 
+void		rotate(float *x, float *y, file *st)
+{
+	float 	pre_x;
+
+	pre_x = *x;
+	*x = pre_x * (float)cos(st->angle_x) - *y * (float)sin(st->angle_x);
+	*y = pre_x * (float)sin(st->angle_x) + *y * (float)cos(st->angle_x);
+}
+
 void		rotate_x(float *y, float *z, file *st)
 {
 	float	pre_y;

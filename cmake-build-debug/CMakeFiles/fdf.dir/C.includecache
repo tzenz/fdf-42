@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/tzenz/fdf/srcs/fdf/drawline.c
+/Users/tzenz/fdf/srcs/fdf/drawimg.c
+fdf.h
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+
+/Users/tzenz/fdf/srcs/fdf/drawpix.c
 fdf.h
 /Users/tzenz/fdf/srcs/fdf/fdf.h
 
@@ -20,7 +24,15 @@ stdio.h
 math.h
 /Users/tzenz/fdf/srcs/fdf/math.h
 
+/Users/tzenz/fdf/srcs/fdf/main.c
+fdf.h
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+
 /Users/tzenz/fdf/srcs/fdf/readfile.c
+fdf.h
+/Users/tzenz/fdf/srcs/fdf/fdf.h
+
+/Users/tzenz/fdf/srcs/fdf/rotate.c
 fdf.h
 /Users/tzenz/fdf/srcs/fdf/fdf.h
 

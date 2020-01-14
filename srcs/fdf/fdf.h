@@ -20,10 +20,6 @@
 
 # define MOD(a) ((a > 0) ? a : -a)
 # define MAX(a,b) ((a > b) ? a : b)
-# define WIN_WIDTH 2000
-# define WIN_HIGHT 1200
-# define MAXPIX 2400000
-
 
 typedef struct		s_file
 {
@@ -41,15 +37,30 @@ typedef struct		s_file
 	void			*img_ptr;
 	int 			*img_data;
 
+	float			x;
+	float			y;
 	float 			i;
 	float 			j;
-	double			x;
-	double			y;
 	float 			ziso;
 	int 			button;
+	float 			W_W;
+	float 			W_H;
+	int 			X_IMG;
+	int 			Y_IMG;
 }					file;
 
-//void		drawimage(int x, int y, int x1, int y1, file *st);
+typedef struct		s_point
+{
+	float 			x;
+	float 			y;
+	float 			x1;
+	float 			y1;
+	float 			z;
+	float 			z1;
+}					t_point;
+
+void		background(file *st);
+
 //void		draw(file *st);
 //void		isometric(int *x, int *y, int z);
 
@@ -59,15 +70,14 @@ void		rotate_z(float *x, float *y, file *st);
 void		rotate_y(float *x, float *z, file *st);
 
 int 		mouse_press(int button, int x, int y, file *st);
-void		putclean(file *st);
-void		drawimage(float x, float y, float x1, float y1, file *st);
+void		putclean(file *st, int key);
+//void		drawimage(float x, float y, float x1, float y1, file *st);
+void		drawimage(t_point *pt, file *st);
+
 void		draw(file *st);
 void		isometric(float *x, float *y, file *st, float z);
 
 int 		drawline(float x, float y, float x1, float y1, file *st);
 void		s_hight(file *st, char **argv);
-void		ft_putsnbr(file *st);
-int 		deal_key(int key, file *st);
-void		drawp(file *st);
 
 #endif

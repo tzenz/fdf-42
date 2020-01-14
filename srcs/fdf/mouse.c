@@ -29,7 +29,7 @@ int 		mouse_move(int x, int y, file *st)
 		st->angle_y -= 0.07;
 	st->x = x;
 	st->y = y;
-	putclean(st);
+	putclean(st, 0);
 	return (0);
 }
 

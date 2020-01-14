@@ -123,6 +123,33 @@ fdf/fast:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/build
 .PHONY : fdf/fast
 
+srcs/fdf/background.o: srcs/fdf/background.c.o
+
+.PHONY : srcs/fdf/background.o
+
+# target to build an object file
+srcs/fdf/background.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/background.c.o
+.PHONY : srcs/fdf/background.c.o
+
+srcs/fdf/background.i: srcs/fdf/background.c.i
+
+.PHONY : srcs/fdf/background.i
+
+# target to preprocess a source file
+srcs/fdf/background.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/background.c.i
+.PHONY : srcs/fdf/background.c.i
+
+srcs/fdf/background.s: srcs/fdf/background.c.s
+
+.PHONY : srcs/fdf/background.s
+
+# target to generate assembly for a file
+srcs/fdf/background.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/background.c.s
+.PHONY : srcs/fdf/background.c.s
+
 srcs/fdf/drawimg.o: srcs/fdf/drawimg.c.o
 
 .PHONY : srcs/fdf/drawimg.o
@@ -203,6 +230,33 @@ srcs/fdf/main.s: srcs/fdf/main.c.s
 srcs/fdf/main.c.s:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/main.c.s
 .PHONY : srcs/fdf/main.c.s
+
+srcs/fdf/mouse.o: srcs/fdf/mouse.c.o
+
+.PHONY : srcs/fdf/mouse.o
+
+# target to build an object file
+srcs/fdf/mouse.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/mouse.c.o
+.PHONY : srcs/fdf/mouse.c.o
+
+srcs/fdf/mouse.i: srcs/fdf/mouse.c.i
+
+.PHONY : srcs/fdf/mouse.i
+
+# target to preprocess a source file
+srcs/fdf/mouse.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/mouse.c.i
+.PHONY : srcs/fdf/mouse.c.i
+
+srcs/fdf/mouse.s: srcs/fdf/mouse.c.s
+
+.PHONY : srcs/fdf/mouse.s
+
+# target to generate assembly for a file
+srcs/fdf/mouse.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/mouse.c.s
+.PHONY : srcs/fdf/mouse.c.s
 
 srcs/fdf/readfile.o: srcs/fdf/readfile.c.o
 
@@ -2265,6 +2319,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... fdf"
+	@echo "... srcs/fdf/background.o"
+	@echo "... srcs/fdf/background.i"
+	@echo "... srcs/fdf/background.s"
 	@echo "... srcs/fdf/drawimg.o"
 	@echo "... srcs/fdf/drawimg.i"
 	@echo "... srcs/fdf/drawimg.s"
@@ -2274,6 +2331,9 @@ help:
 	@echo "... srcs/fdf/main.o"
 	@echo "... srcs/fdf/main.i"
 	@echo "... srcs/fdf/main.s"
+	@echo "... srcs/fdf/mouse.o"
+	@echo "... srcs/fdf/mouse.i"
+	@echo "... srcs/fdf/mouse.s"
 	@echo "... srcs/fdf/readfile.o"
 	@echo "... srcs/fdf/readfile.i"
 	@echo "... srcs/fdf/readfile.s"

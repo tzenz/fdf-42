@@ -12,34 +12,12 @@
 
 #include "fdf.h"
 
-void		ft_putsnbr(file *st)
-{
-	int		i;
-	int 	j;
-
-	i = 0;
-	while (i < st->hight)
-	{
-		j = 0;
-		while (j < st->width)
-		{
-			ft_putnbr(st->s[i][j++]);
-			if (st->s[i][j] < 10)
-				ft_putstr("  ");
-			else if (st->s[i][j] < 100)
-				ft_putstr(" ");
-		}
-		ft_putchar('\n');
-		i++;
-	}
-}
-
 void		s_int(file *st, char **argv, int j, int n)
 {
-	char 	**buf;
-	char 	*line;
-	int 	fd;
-	int 	i;
+	char	**buf;
+	char	*line;
+	int		fd;
+	int		i;
 
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
@@ -59,13 +37,12 @@ void		s_int(file *st, char **argv, int j, int n)
 	close(fd);
 }
 
-
 int			s_leght(char **argv)
 {
-	char 	*line;
-	int 	lengt;
-	int 	fd;
-	int 	i;
+	char	*line;
+	int		lengt;
+	int		fd;
+	int		i;
 
 	lengt = 0;
 	i = 0;
@@ -83,11 +60,11 @@ int			s_leght(char **argv)
 
 void		s_hight(file *st, char **argv)
 {
-	char 	*line;
+	char	*line;
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
-	while(get_next_line(fd, &line))
+	while (get_next_line(fd, &line))
 	{
 		st->hight++;
 		free(line);

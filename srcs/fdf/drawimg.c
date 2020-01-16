@@ -12,54 +12,18 @@
 
 #include "fdf.h"
 
-void		isometric(float *x, float *y, file *st, float z)
-{
-	float 	pre_x;
-	float 	pre_y;
-
-	if (z)
-		z = st->ziso;
-	pre_x = *x;
-	pre_y = *y;
-	*x = (pre_x - pre_y) * (float)cos(0.523599);
-	*y = -z + (pre_x + pre_y) * (float)sin(0.523599);
-}
-
-//void		draw(file *st)
-//{
-//	float 	x;
-//	float 	y;
-//
-//	y = 0;
-//	x = 0;
-//	while (y < (float)st->hight)
-////	while (y < (float)st->hight && y < 1)
-//	{
-//		x = 0;
-//		while (x <(float) st->width)
-////		while (x < (float)st->width && x < 1)
-//		{
-////			if (x < (float)st->width - 1)
-////				drawimage(x, y, x + 1, y, st);
-////			if (y < (float)st->hight - 1)
-////				drawimage(x, y, x, y + 1, st);
-//			x++;
-//		}
-//		y++;
-//	}
-//	printf("x - %f y - %f\n", x, y);
-//}
-
-void		draw(file *st)
+void		draw(t_file *st, float x, float y)
 {
 	t_point *pt;
 
 	pt = (t_point *)ft_memalloc(sizeof(t_point));
 	while (pt->y < (float)st->hight)
+//	while (pt->y < (float)st->hight && pt->y < 1)
 	{
 		pt->x = 0;
 		pt->x1 = 0;
 		while (pt->x <(float) st->width)
+//		while (pt->x < (float)st->width && pt->x < 1)
 		{
 			if (pt->x < (float)st->width - 1)
 			{
@@ -79,143 +43,107 @@ void		draw(file *st)
 		pt->y++;
 		pt->y1++;
 	}
+	free(pt);
 }
 
-void		color(t_point *pt, file *st)
+void		color(t_file *st, t_cur *cur, t_point *pt)
 {
-	pt->z = (float)st->s[(int) pt->y][(int) pt->x];
-	pt->z1 = (float)st->s[(int) pt->y1][(int) pt->x1];
-	st->color = (pt->z || pt->z1) ? 0x01a74e : 0xed6321;
+	cur->x = pt->x;
+	cur->y = pt->y;
+	cur->x1 = pt->x1;
+	cur->y1 = pt ->y1;
+	cur->count = 1;
+	cur->z = (float)st->s[(int) pt->y][(int) pt->x];
+	cur->z1 = (float)st->s[(int) pt->y1][(int) pt->x1];
+	st->color = (cur->z || cur->z1) ? 0x01a74e : 0xed6321;
 }
 
-//void		zoom()
-
-void		drawimage(t_point *pt, file *st)
+void		rotate(t_file *st, t_point *pt, t_cur * cur)
 {
-	float x_step;
-	float y_step;
-	float wcount;
-	int count;
-	float max;
 
-	float 	x;
-	float	y;
-	float 	x1;
-	float	y1;
+	isometric(&cur->x, &cur->y, st, cur->z);
+	isometric(&cur->x1, &cur->y1, st, cur->z1);
+//	rotate_x(&cur->y, &cur->z, st);
+//	rotate_x(&cur->y1, &cur->z1, st);
+//	rotate_y(&cur->x, &cur->z, st);
+//	rotate_y(&cur->x1, &cur->z1, st);
 
-	x = pt->x;
-	y = pt->y;
-	x1 = pt->x1;
-	y1 = pt ->y1;
+}
 
-	count = 1;
-	wcount = 0;
-	color(pt, st);
-
-//	rotate(&x, &y, st);
-//	rotate(&x1, &y1, st);
-//	rotate_x(&y, &z, st);
-//	rotate_x(&y1, &z1, st);
-//	rotate_y(&x, &z, st);
-//	rotate_y(&x1, &z1, st);
-//	rotate_z(&y, &z, st);
-//	rotate_z(&y1, &z1, st);
-
-	isometric(&x, &y, st, (float) pt->z);
-	isometric(&x1, &y1, st, (float) pt->z1);
-
-	st->i = (x * 4 + 4 * st->W_W * y);
-	st->j = (x1 * 4 + 4 * st->W_W * y1);
-
+void		zoom(t_file *st, t_cur *cur, t_point *pt)
+{
+	st->i = (cur->x * 4 + 4 * st->W_W * cur->y);
+	st->j = (cur->x1 * 4 + 4 * st->W_W * cur->y1);
 	st->i *= st->zoom;
 	st->j *= st->zoom;
-
 	st->i += ((st->W_H / 2) * st->W_W) + st->W_W / 2;
 	st->j += ((st->W_H / 2) * st->W_W) + st->W_W / 2;
+	cur->x = (float)((int) st->i % (int)st->W_W);
+	cur->y = (float)((int) st->i / (int)st->W_W);
+	cur->x1 = (float)((int) st->j % (int)st->W_W);
+	cur->y1 = (float)((int) st->j / (int)st->W_W);
+	cur->x_step = cur->x1 - cur->x;
+	cur->y_step = cur->y1 - cur->y;
+	cur->max = MAX(MOD(cur->x_step), MOD(cur->y_step));
+	cur->x_step /= cur->max;
+	cur->y_step /= cur->max;
+	cur->y = (cur->y >= 0) ? cur->y * st->W_W : cur->y;
+	cur->y1 = (cur->y1 >= 0) ? cur->y1 * st->W_W : cur->y1;
+}
 
-	x = (int) st->i % (int)st->W_W;
-	y = (int) st->i / (int)st->W_W;
-	x1 = (int) st->j % (int)st->W_W;
-	y1 = (int) st->j / (int)st->W_W;
+int			color_pix(t_cur *cur, t_file *st)
+{
+	int 	blue;
+	int 	turq;
 
-	x_step = x1 - x;
-	y_step = y1 - y;
-	max = MAX(MOD(x_step), MOD(y_step));
-	x_step /= max;
-	y_step /= max;
-	y = (y >= 0) ? y * st->W_W : y;
-	y1 = (y1 >= 0) ? y1 * st->W_W : y1;
-	while ((int) (x + y) < (int) (x1 + y1) && x + y < st->W_W * st->W_H)
+	turq = 0x3fffc7;
+	if (cur->z == cur->z1 && cur->z > 0)
+		return (turq);
+	else if (cur->z == cur->z1 && cur->z == 0)
+		return (blue);
+	else
 	{
-		st->img_data[(int) (x + y)] = st->color;
-		x += x_step;
-		if ((int) (wcount += y_step) == count)
-		{
-			y += st->W_W;
-			count += 1;
-		}
+		return (0xFFF5EE);
 	}
 }
 
-//void		drawimage(float x, float y, float x1, float y1, file *st)
-//{
-//	int count;
-//	int *b1;
-//	float z;
-//	float z1;
-//	float max;
-//	float x_step;
-//	float y_step;
-//	float wcount;
-//
-//	count = 1;
-//	wcount = 0;
-//	z = st->s[(int) y][(int) x];
-//	z1 = st->s[(int) y1][(int) x1];
-//	st->color = (z || z1) ? 0x01a74e : 0xed6321;
-//	b1 = st->img_data;
-//
-////	rotate(&x, &y, st);
-////	rotate(&x1, &y1, st);
-////	rotate_x(&y, &z, st);
-////	rotate_x(&y1, &z1, st);
-////	rotate_y(&x, &z, st);
-////	rotate_y(&x1, &z1, st);
-////	rotate_z(&y, &z, st);
-////	rotate_z(&y1, &z1, st);
-//
-//	isometric(&x, &y, st, (float) z);
-//	isometric(&x1, &y1, st, (float) z1);
-//
-//	st->i = (x * 4 + 4 * st->W_W * y);
-//	st->j = (x1 * 4 + 4 * st->W_W * y1);
-//
-//	st->i *= st->zoom;
-//	st->j *= st->zoom;
-//
-//	st->i += ((st->W_H / 2) * st->W_W) + st->W_W / 2;
-//	st->j += ((st->W_H / 2) * st->W_W) + st->W_W / 2;
-//
-//	x = (int) st->i % (int)st->W_W;
-//	y = (int) st->i / (int)st->W_W;
-//	x1 = (int) st->j % (int)st->W_W;
-//	y1 = (int) st->j / (int)st->W_W;
-//
-//	x_step = x1 - x;
-//	y_step = y1 - y;
-//	max = MAX(MOD(x_step), MOD(y_step));
-//	x_step /= max;
-//	y_step /= max;
-//	y = (y >= 0) ? y * st->W_W : y;
-//	y1 = (y1 >= 0) ? y1 * st->W_W : y1;
-//	while ((int) (x + y) < (int) (x1 + y1) && x + y < st->W_W * st->W_H)
-//	{
-//		b1[(int) (x + y)] = st->color;
-//		x += x_step;
-//		if ((int) (wcount += y_step) == count)
-//		{
-//			y += st->W_W;
-//			count += 1;
-//		}
-//	}
-//}
+void		drawline(t_file *st, t_cur *cur, t_point *pt)
+{
+	if ((int)(cur->x + cur->y) < (int)(cur->x1 + cur->y1))
+		while ((int) (cur->x + cur->y) < (int) (cur->x1 + cur->y1)
+					&& cur->x + cur->y < st->W_W * st->W_H)
+		{
+			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st);
+//			st->img_data[(int) (cur->x + cur->y)] = st->color;
+			cur->x += cur->x_step;
+			if ((int) (cur->wcount += cur->y_step) == cur->count)
+			{
+				cur->y += st->W_W;
+				cur->count += 1;
+			}
+		}
+	else if ((int)(cur->x + cur->y) + 1 > (int)(cur->x1 + cur->y1))
+		while ((int) (cur->x + cur->y) > (int) (cur->x1 + cur->y1) && cur->x + cur->y < st->W_W * st->W_H)
+		{
+			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st);
+//			st->img_data[(int) (cur->x + cur->y)] = st->color;
+			cur->x -= (cur->x_step < 0) ? MOD(cur->x_step) : -cur->x_step;
+			if ((int) (cur->wcount += MOD(cur->y_step)) == cur->count)
+			{
+				cur->y -= st->W_W;
+				cur->count += 1;
+			}
+		}
+}
+
+void		drawimage(t_point *pt, t_file *st)
+{
+	t_cur	*cur;
+
+	cur = (t_cur *)ft_memalloc(sizeof(t_cur));
+	color(st, cur, pt);
+	rotate(st, pt, cur);
+	zoom(st, cur, pt);
+	drawline(st, cur, pt);
+	free(cur);
+}

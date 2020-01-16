@@ -12,11 +12,17 @@
 
 #include "fdf.h"
 
-void		background(file *st)
+void		background(t_file *st)
 {
 	int 	i;
 
 	i = 0;
 	while (i < (int)st->W_W * (int)st->W_H)
-		st->img_data[i++] = 0x222222;
+	{
+		st->img_data[i++] = 34;
+		st->img_data[i++] = 34;
+		st->img_data[i++] = 34;
+		st->img_data[i++] = 0;
+	}
+//	st->img_data[i++] = 0x222222;
 }

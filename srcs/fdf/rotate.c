@@ -12,16 +12,20 @@
 
 #include "fdf.h"
 
-void		rotate(float *x, float *y, file *st)
+void		isometric(float *x, float *y, t_file *st, float z)
 {
 	float 	pre_x;
+	float 	pre_y;
 
+//	if (z)
+//		z = st->ziso;
 	pre_x = *x;
-	*x = pre_x * (float)cos(st->angle_x) - *y * (float)sin(st->angle_x);
-	*y = pre_x * (float)sin(st->angle_x) + *y * (float)cos(st->angle_x);
+	pre_y = *y;
+	*x = (pre_x - pre_y) * (float)cos(0.523599);
+	*y = -z + (pre_x + pre_y) * (float)sin(0.523599);
 }
 
-void		rotate_x(float *y, float *z, file *st)
+void		rotate_x(float *y, float *z, t_file *st)
 {
 	float	pre_y;
 
@@ -30,7 +34,7 @@ void		rotate_x(float *y, float *z, file *st)
 	*z = -pre_y * (float)sin(st->angle_x) + *z * (float)cos(st->angle_x);
 }
 
-void		rotate_y(float *x, float *z, file *st)
+void		rotate_y(float *x, float *z, t_file *st)
 {
 	float 	pre_x;
 
@@ -39,7 +43,7 @@ void		rotate_y(float *x, float *z, file *st)
 	*z = -pre_x * (float)sin(st->angle_y) + *z * (float)cos(st->angle_y);
 }
 
-void		rotate_z(float *x, float *y, file *st)
+void		rotate_z(float *x, float *y, t_file *st)
 {
 	float	pre_x;
 	float	pre_y;

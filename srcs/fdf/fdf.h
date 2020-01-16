@@ -35,7 +35,7 @@ typedef struct		s_file
 	void			*mlx;
 	void			*win;
 	void			*img_ptr;
-	int 			*img_data;
+	char 			*img_data;
 
 	float			x;
 	float			y;
@@ -47,7 +47,7 @@ typedef struct		s_file
 	float 			W_H;
 	int 			X_IMG;
 	int 			Y_IMG;
-}					file;
+}					t_file;
 
 typedef struct		s_point
 {
@@ -55,29 +55,41 @@ typedef struct		s_point
 	float 			y;
 	float 			x1;
 	float 			y1;
-	float 			z;
-	float 			z1;
 }					t_point;
 
-void		background(file *st);
+typedef struct 		s_cur
+{
+	float			x_step;
+	float 			y_step;
+	float			wcount;
+	int				count;
+	float			max;
+
+	float			x;
+	float 			y;
+	float 			x1;
+	float			y1;
+	float 			z;
+	float 			z1;
+}					t_cur;
+
+void		background(t_file *st);
 
 //void		draw(file *st);
 //void		isometric(int *x, int *y, int z);
 
-void		rotate(float *x, float *y, file *st);
-void		rotate_x(float *y, float *z, file *st);
-void		rotate_z(float *x, float *y, file *st);
-void		rotate_y(float *x, float *z, file *st);
+void		rotate(t_file *st, t_point *pt, t_cur *cur);
+void		rotate_x(float *y, float *z, t_file *st);
+void		rotate_z(float *x, float *y, t_file *st);
+void		rotate_y(float *x, float *z, t_file *st);
 
-int 		mouse_press(int button, int x, int y, file *st);
-void		putclean(file *st, int key);
-//void		drawimage(float x, float y, float x1, float y1, file *st);
-void		drawimage(t_point *pt, file *st);
+int 		mouse_press(int button, int x, int y, t_file *st);
+void		putclean(t_file *st, int key, int button);
+void		drawimage(t_point *pt, t_file *st);
 
-void		draw(file *st);
-void		isometric(float *x, float *y, file *st, float z);
+void		draw(t_file *st, float x, float y);
+void		isometric(float *x, float *y, t_file *st, float z);
 
-int 		drawline(float x, float y, float x1, float y1, file *st);
-void		s_hight(file *st, char **argv);
+void		s_hight(t_file *st, char **argv);
 
 #endif

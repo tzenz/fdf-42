@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void		s_int(file *st, char **argv, int j, int n)
+void		s_int(t_file *st, char **argv, int j, int n)
 {
 	char	**buf;
 	char	*line;
@@ -58,7 +58,7 @@ int			s_leght(char **argv)
 	return (lengt);
 }
 
-void		s_hight(file *st, char **argv)
+void		s_hight(t_file *st, char **argv)
 {
 	char	*line;
 	int		fd;

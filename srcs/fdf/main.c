@@ -51,7 +51,7 @@ void		putclean(t_file *st, int key, int button)
 	}
 	mlx_destroy_image(st->mlx, st->img_ptr);
 	st->img_ptr = mlx_new_image(st->mlx, (int)st->W_W, (int)st->W_H);
-	st->img_data = mlx_get_data_addr(st->img_ptr, &bse[0], &bse[1], &bse[2]);
+	st->img_data = (int *)mlx_get_data_addr(st->img_ptr, &bse[0], &bse[1], &bse[2]);
 	background(st);
 	draw(st, 0, 0);
 	mlx_put_image_to_window(st->mlx, st->win, st->img_ptr, st->X_IMG, st->Y_IMG);
@@ -92,13 +92,25 @@ int 		main(int argc, char **argv)
 {
 	t_file 	*st;
 	int 	bse[3];
+	int 	red;
+	int 	green;
+	int 	blue;
+	int 	i;
+	int 	j;
 
+/*	i = 0xE6E6FA;
+	red = (i >> 16) & 0xFF;
+	blue = i >> 8 & 0xFF;
+	green = i & 0xFF;
+	ft_putnbr(red);
+	ft_putnbr(blue);
+	ft_putnbr(green);*/
 	st = start(argc, argv);
 	st->mlx = mlx_init();
 	st->win= mlx_new_window(st->mlx, 2000, 1000, "FDF");
 
 	st->img_ptr = mlx_new_image(st->mlx, (int)st->W_W, (int)st->W_H);
-	st->img_data = mlx_get_data_addr(st->img_ptr, &bse[0], &bse[1], &bse[2]);
+	st->img_data = (int *)mlx_get_data_addr(st->img_ptr, &bse[0], &bse[1], &bse[2]);
 	background(st);
 	draw(st, 0, 0);
 

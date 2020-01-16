@@ -17,6 +17,7 @@
 # include "../minilibx_macos/mlx.h"
 # include <stdio.h>
 # include "math.h"
+# include "color.h"
 
 # define MOD(a) ((a > 0) ? a : -a)
 # define MAX(a,b) ((a > b) ? a : b)
@@ -35,7 +36,7 @@ typedef struct		s_file
 	void			*mlx;
 	void			*win;
 	void			*img_ptr;
-	char 			*img_data;
+	int 			*img_data;
 
 	float			x;
 	float			y;
@@ -64,6 +65,7 @@ typedef struct 		s_cur
 	float			wcount;
 	int				count;
 	float			max;
+	int 			color_c;
 
 	float			x;
 	float 			y;

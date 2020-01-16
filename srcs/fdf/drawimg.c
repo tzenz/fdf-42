@@ -65,8 +65,8 @@ void		rotate(t_file *st, t_point *pt, t_cur * cur)
 	isometric(&cur->x1, &cur->y1, st, cur->z1);
 //	rotate_x(&cur->y, &cur->z, st);
 //	rotate_x(&cur->y1, &cur->z1, st);
-//	rotate_y(&cur->x, &cur->z, st);
-//	rotate_y(&cur->x1, &cur->z1, st);
+	rotate_y(&cur->x, &cur->z, st);
+	rotate_y(&cur->x1, &cur->z1, st);
 
 }
 
@@ -91,20 +91,46 @@ void		zoom(t_file *st, t_cur *cur, t_point *pt)
 	cur->y1 = (cur->y1 >= 0) ? cur->y1 * st->W_W : cur->y1;
 }
 
-int			color_pix(t_cur *cur, t_file *st)
+double 		precent(float start, float end, t_file *st)
+{
+	double	placement;
+	double	distance;
+
+	placement = start - (double)((int)st->i % (int)st->W_W);
+	distance = end - (double)((int)st->i % (int)st->W_W);
+//	printf("dist - %lg", distance);
+	return ((distance == 0) ? 1.0 : (MOD(placement) / MOD(distance)));
+}
+
+int			get_light(int start, int end, double percentage)
+{
+	return ((int)((1 - percentage) * start + percentage * end));
+}
+
+int			color_pix(t_cur *cur, t_file *st, int color_z0, int color_z10)
 {
 	int 	blue;
-	int 	turq;
+	int 	green;
+	int 	red;
+	double 	prec;
 
-	turq = 0x3fffc7;
+//	printf("prec - %lg\n", prec);
 	if (cur->z == cur->z1 && cur->z > 0)
-		return (turq);
+		return (color_z10);
 	else if (cur->z == cur->z1 && cur->z == 0)
-		return (blue);
+		return (color_z0);
 	else
 	{
-		return (0xFFF5EE);
+//		if (cur->x > cur->x1)
+			prec = precent(cur->x, cur->x1, st);
+//		else
+//			prec = precent(cur->y, cur->y1, st);
+		red = get_light((color_z10 >> 16) & 0xFF, (color_z0 >> 16) & 0xFF, prec);
+		blue = get_light((color_z10 >> 8) & 0xFF, (color_z0 >> 8) & 0xFF, prec);
+		green = get_light(color_z10 & 0xFF, color_z0 & 0xFF, prec);
+		return ((red << 16) | (blue << 8) | green);
 	}
+
 }
 
 void		drawline(t_file *st, t_cur *cur, t_point *pt)
@@ -113,8 +139,7 @@ void		drawline(t_file *st, t_cur *cur, t_point *pt)
 		while ((int) (cur->x + cur->y) < (int) (cur->x1 + cur->y1)
 					&& cur->x + cur->y < st->W_W * st->W_H)
 		{
-			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st);
-//			st->img_data[(int) (cur->x + cur->y)] = st->color;
+			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st, 0x3f51c7, 0x3fcdc7);
 			cur->x += cur->x_step;
 			if ((int) (cur->wcount += cur->y_step) == cur->count)
 			{
@@ -125,8 +150,7 @@ void		drawline(t_file *st, t_cur *cur, t_point *pt)
 	else if ((int)(cur->x + cur->y) + 1 > (int)(cur->x1 + cur->y1))
 		while ((int) (cur->x + cur->y) > (int) (cur->x1 + cur->y1) && cur->x + cur->y < st->W_W * st->W_H)
 		{
-			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st);
-//			st->img_data[(int) (cur->x + cur->y)] = st->color;
+			st->img_data[(int) (cur->x + cur->y)] = color_pix(cur, st, 0x3fcdc7, 0x3f51c7);
 			cur->x -= (cur->x_step < 0) ? MOD(cur->x_step) : -cur->x_step;
 			if ((int) (cur->wcount += MOD(cur->y_step)) == cur->count)
 			{

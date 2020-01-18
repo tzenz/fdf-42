@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/tzenz/fdf/srcs/fdf/background.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/background.c.o"
+  "/Users/tzenz/fdf/srcs/fdf/color.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/color.c.o"
   "/Users/tzenz/fdf/srcs/fdf/drawimg.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/drawimg.c.o"
   "/Users/tzenz/fdf/srcs/fdf/drawpix.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.o"
   "/Users/tzenz/fdf/srcs/fdf/main.c" "/Users/tzenz/fdf/cmake-build-debug/CMakeFiles/fdf.dir/srcs/fdf/main.c.o"

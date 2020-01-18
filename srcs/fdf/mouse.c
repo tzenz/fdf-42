@@ -24,13 +24,13 @@ int 		mouse_move(int x, int y, t_file *st)
 	if (st->button > 0)
 		return (0);
 	if ((float)x > st->x)
-		st->angle_y += 0.07;
+		st->Skey->angle_y += 0.07;
 	else if ((float)x < st->x)
-		st->angle_y -= 0.07;
+		st->Skey->angle_y -= 0.07;
 	if ((float)y > st->y)
-		st->angle_x += 0.07;
+		st->Skey->angle_x += 0.07;
 	else if ((float)y < st->y)
-		st->angle_x -= 0.07;
+		st->Skey->angle_x -= 0.07;
 	st->x = (float)x;
 	st->y = (float)y;
 //	printf("x - %d ms->x - %f\n", x ,st->x);

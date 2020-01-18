@@ -48,10 +48,14 @@ int			s_leght(char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	get_next_line(fd, &line);
-	while (line[i])
+	while (line[i] != '\0')
 	{
-		if (line[i] != ' ')
+		if (ft_isdigit(line[i]))
+		{
+			if (ft_isdigit(line[i + 1]))
+				i++;
 			lengt++;
+		}
 		i++;
 	}
 	free(line);

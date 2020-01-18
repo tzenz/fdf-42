@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/fdf.dir/srcs/fdf/background.c.o"
+  "CMakeFiles/fdf.dir/srcs/fdf/color.c.o"
   "CMakeFiles/fdf.dir/srcs/fdf/drawimg.c.o"
   "CMakeFiles/fdf.dir/srcs/fdf/drawpix.c.o"
   "CMakeFiles/fdf.dir/srcs/fdf/main.c.o"

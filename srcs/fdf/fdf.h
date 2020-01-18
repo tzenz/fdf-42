@@ -22,16 +22,41 @@
 # define MOD(a) ((a > 0) ? a : -a)
 # define MAX(a,b) ((a > b) ? a : b)
 
+typedef struct		s_key
+{
+	double			angle_x;
+	double 			angle_y;
+	double 			angle_z;
+	float 			mx;
+	float 			my;
+}					t_key;
+
+typedef struct 		s_cur
+{
+	int 			color_z;
+	int 			color_z1;
+	float			x_step;
+	float 			y_step;
+	float			wcount;
+	int				count;
+	float			max;
+	int 			maxz;
+	int 			minz;
+
+	float			x;
+	float 			y;
+	float 			x1;
+	float			y1;
+	float 			z;
+	float 			z1;
+}					t_cur;
+
 typedef struct		s_file
 {
 	int 			**s;
 	int				width;
 	int				hight;
 	float 			zoom;
-	int 			color;
-	double			angle_x;
-	double 			angle_y;
-	double 			angle_z;
 
 	void			*mlx;
 	void			*win;
@@ -48,6 +73,9 @@ typedef struct		s_file
 	float 			W_H;
 	int 			X_IMG;
 	int 			Y_IMG;
+
+	t_cur 			*Scur;
+	t_key			*Skey;
 }					t_file;
 
 typedef struct		s_point
@@ -58,23 +86,9 @@ typedef struct		s_point
 	float 			y1;
 }					t_point;
 
-typedef struct 		s_cur
-{
-	float			x_step;
-	float 			y_step;
-	float			wcount;
-	int				count;
-	float			max;
-	int 			color_c;
-
-	float			x;
-	float 			y;
-	float 			x1;
-	float			y1;
-	float 			z;
-	float 			z1;
-}					t_cur;
-
+int 		maxz(t_file *st);
+int 		minz(t_file *st);
+int			color_pix(t_cur *cur, t_file *st);
 void		background(t_file *st);
 
 //void		draw(file *st);

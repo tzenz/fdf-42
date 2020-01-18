@@ -9,6 +9,8 @@ include_directories(srcs/minilibx_macos)
 
 add_executable(fdf
         srcs/fdf/background.c
+        srcs/fdf/color.c
+        srcs/fdf/color.h
         srcs/fdf/drawimg.c
         srcs/fdf/drawpix.c
         srcs/fdf/fdf.h

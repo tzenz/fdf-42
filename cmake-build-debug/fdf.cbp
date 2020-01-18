@@ -89,6 +89,12 @@
 		<Unit filename="/Users/tzenz/fdf/srcs/fdf/background.c">
 			<Option target="fdf"/>
 		</Unit>
+		<Unit filename="/Users/tzenz/fdf/srcs/fdf/color.c">
+			<Option target="fdf"/>
+		</Unit>
+		<Unit filename="/Users/tzenz/fdf/srcs/fdf/color.h">
+			<Option target="fdf"/>
+		</Unit>
 		<Unit filename="/Users/tzenz/fdf/srcs/fdf/drawimg.c">
 			<Option target="fdf"/>
 		</Unit>

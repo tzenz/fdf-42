@@ -150,6 +150,33 @@ srcs/fdf/background.c.s:
 	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/background.c.s
 .PHONY : srcs/fdf/background.c.s
 
+srcs/fdf/color.o: srcs/fdf/color.c.o
+
+.PHONY : srcs/fdf/color.o
+
+# target to build an object file
+srcs/fdf/color.c.o:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/color.c.o
+.PHONY : srcs/fdf/color.c.o
+
+srcs/fdf/color.i: srcs/fdf/color.c.i
+
+.PHONY : srcs/fdf/color.i
+
+# target to preprocess a source file
+srcs/fdf/color.c.i:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/color.c.i
+.PHONY : srcs/fdf/color.c.i
+
+srcs/fdf/color.s: srcs/fdf/color.c.s
+
+.PHONY : srcs/fdf/color.s
+
+# target to generate assembly for a file
+srcs/fdf/color.c.s:
+	$(MAKE) -f CMakeFiles/fdf.dir/build.make CMakeFiles/fdf.dir/srcs/fdf/color.c.s
+.PHONY : srcs/fdf/color.c.s
+
 srcs/fdf/drawimg.o: srcs/fdf/drawimg.c.o
 
 .PHONY : srcs/fdf/drawimg.o
@@ -2322,6 +2349,9 @@ help:
 	@echo "... srcs/fdf/background.o"
 	@echo "... srcs/fdf/background.i"
 	@echo "... srcs/fdf/background.s"
+	@echo "... srcs/fdf/color.o"
+	@echo "... srcs/fdf/color.i"
+	@echo "... srcs/fdf/color.s"
 	@echo "... srcs/fdf/drawimg.o"
 	@echo "... srcs/fdf/drawimg.i"
 	@echo "... srcs/fdf/drawimg.s"

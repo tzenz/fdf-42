@@ -6,7 +6,7 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 10:35:12 by tzenz             #+#    #+#             */
-/*   Updated: 2019/10/21 11:14:22 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/01/31 16:10:02 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	*ft_strtrims(char const *s)
 
 	i = 0;
 	st = (char *)s;
-    if (!ft_strchr(s, '#'))
-    {
-        new = NULL;
-        return (new);
-  	}
+	if (!ft_strchr(s, '#'))
+	{
+		new = NULL;
+		return (new);
+	}
 	while (*st == '.')
 		st++;
 	len = ft_strlen(st) - 1;

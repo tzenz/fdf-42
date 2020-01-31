@@ -6,7 +6,7 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 12:34:00 by tzenz             #+#    #+#             */
-/*   Updated: 2019/10/10 18:39:17 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/01/31 16:17:07 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 # include <fcntl.h>
 # define BUFF_SIZE 100
 
-# define FT_ULONG_MAX	((unsigned long)(~0L))
-# define FT_LONG_MAX	((long)(FT_ULONG_MAX >> 1))
-# define FT_LONG_MIN	((long)(~FT_LONG_MAX))
+# define FT_LONG_MAX 4294967295
 
 typedef struct		s_list
 {
@@ -29,21 +27,23 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef struct				s_get_next_line
+typedef struct		s_gnl
 {
-	int						fd;
-	char					*res;
-	struct s_get_next_line	*next;
-}							t_gnl;
+	int				fd;
+	char			*str;
+	struct s_gnl	*next;
+}					t_gnl;
 
+char				*ft_strchrs(const char *s, int c);
+char				*ft_strsubchr(const char *s, char c);
 double				ft_pow(double num, int pow);
 double				ft_sqrt(double num);
 char				**ft_cpyptrn(char **field, char **before);
 int					ft_countptr(char **s);
-char	            *ft_strtrims(char const *s);
+char				*ft_strtrims(char const *s);
 char				**ft_strsplitc(char const *s, char c);
 int					get_next_line(const int fd, char **line);
-void	            ft_putsstr(char **s);
+void				ft_putsstr(char **s);
 
 void				*ft_memset(void *dest, int c, size_t n);
 void				ft_bzero(void *s, size_t n);

@@ -14,7 +14,9 @@ NAME = libft.a
 
 FLAGS = -Wall -Wextra -Werror -I include/
 
-SRC =   ft_cpyptrn.c\
+SRC =   ft_strchrs.c\
+		ft_strsubchr.c\
+		ft_cpyptrn.c\
         ft_pow.c\
 		ft_sqrt.c\
 		ft_countptr.c\
@@ -81,19 +83,22 @@ SRC =   ft_cpyptrn.c\
 		ft_lstiter.c\
 		ft_lstmap.c\
 
+INC = ./include/libft.h
+
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 all: $(NAME)
 
-$(NAME): 
-	gcc $(FLAGS) -c $(SRC)	
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
+%.o: %.c $(INC)
+	@gcc $(FLAGS) -c $<
 clean:
-	/bin/rm -f *.o
+	@/bin/rm -f *.o
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

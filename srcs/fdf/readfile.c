@@ -6,11 +6,31 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:57:48 by tzenz             #+#    #+#             */
-/*   Updated: 2019/12/24 12:57:55 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:07:49 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <stdio.h>
+
+void		freebuf(char **buf, t_file *st)
+{
+	int		n;
+
+	n = 0;
+	while (buf[n])
+	{
+		free(buf[n]);
+		buf[n++] = NULL;
+	}
+	free(buf);
+	buf = NULL;
+	if (n != st->width)
+	{
+		ft_putstr("incorrect MAP_FILE\n");
+		exit(0);
+	}
+}
 
 void		s_int(t_file *st, char **argv, int j, int n)
 {
@@ -30,6 +50,7 @@ void		s_int(t_file *st, char **argv, int j, int n)
 		while (buf[n])
 			st->s[i][j++] = ft_atoi(buf[n++]);
 		free(line);
+		freebuf(buf, st);
 		n = 0;
 		j = 0;
 		i++;
@@ -48,13 +69,13 @@ int			s_leght(char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	get_next_line(fd, &line);
-	while (line[i] != '\0')
+	while (line[i])
 	{
 		if (ft_isdigit(line[i]))
 		{
-			if (ft_isdigit(line[i + 1]))
-				i++;
 			lengt++;
+			while (ft_isdigit(line[i + 1]))
+				i++;
 		}
 		i++;
 	}
@@ -62,7 +83,7 @@ int			s_leght(char **argv)
 	return (lengt);
 }
 
-void		s_hight(t_file *st, char **argv)
+void		readfile(t_file *st, char **argv)
 {
 	char	*line;
 	int		fd;

@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countptr.c                                      :+:      :+:    :+:   */
+/*   ft_strchrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 12:12:59 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/31 16:08:43 by tzenz            ###   ########.fr       */
+/*   Created: 2020/01/31 18:54:35 by tzenz             #+#    #+#             */
+/*   Updated: 2020/01/31 18:54:53 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-int			ft_countptr(char **s)
+char	*ft_strchrs(const char *s, int c)
 {
-	int		i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	return (ft_strchr(s, c));
 }

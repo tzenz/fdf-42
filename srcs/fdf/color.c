@@ -6,34 +6,23 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 14:53:10 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/17 14:53:12 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/01/31 15:53:44 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "color.h"
-
-double 		precent(double current, double end, double start)
-{
-	double	placement;
-	double	distance;
-
-	placement = current - start;
-	distance = end - start;
-	return ((distance == 0) ? 1.0 : (MOD(placement) / MOD(distance)));
-}
 
 int			get_light(int start, int end, double percentage)
 {
 	return ((int)((1 - percentage) * start + percentage * end));
 }
 
-int 		cur_color(double z, t_cur *cur, t_file *st)
+int			cur_color(double z, t_file *st)
 {
-	double 	prec;
+	double	prec;
 
-	z = (st->Scur->minz) ? z += MOD(st->Scur->minz) : z;
-	prec = (z / st->Scur->maxz) * 100;
+	z = (st->minz) ? z += MOD(st->minz) : z;
+	prec = (z / st->maxz) * 100;
 	if (prec >= 20 && prec <= 40)
 		return (COLOR_2);
 	else if (prec >= 40 && prec <= 60)
@@ -47,26 +36,29 @@ int 		cur_color(double z, t_cur *cur, t_file *st)
 
 int			color_pix(t_cur *cur, t_file *st)
 {
-	int 	blue;
-	int 	green;
-	int 	red;
-	double 	prec;
+	int		blue;
+	int		green;
+	int		red;
+	double	prec;
 
-	prec = precent(cur->x, cur->x1, ((int)st->i % (int)st->W_W));
-	red = get_light((cur_color(cur->color_z, cur, st) >> 16) & 0xFF,
-			(cur_color(cur->color_z1, cur, st) >> 16) & 0xFF, prec);
-	blue = get_light((cur_color(cur->color_z, cur, st) >> 8) & 0xFF,
-			(cur_color(cur->color_z1, cur, st) >> 8) & 0xFF, prec);
-	green = get_light(cur_color(cur->color_z, cur, st) & 0xFF,
-			cur_color(cur->color_z1, cur, st) & 0xFF, prec);
+	if (cur->deltax > cur->deltay)
+		prec = precent(cur->x, cur->x1, st->color_start_x);
+	else
+		prec = precent(cur->y, cur->y1, st->color_start_y);
+	red = get_light((cur_color(cur->color_z, st) >> 16) & 0xFF,
+			(cur_color(cur->color_z1, st) >> 16) & 0xFF, prec);
+	blue = get_light((cur_color(cur->color_z, st) >> 8) & 0xFF,
+			(cur_color(cur->color_z1, st) >> 8) & 0xFF, prec);
+	green = get_light(cur_color(cur->color_z, st) & 0xFF,
+			cur_color(cur->color_z1, st) & 0xFF, prec);
 	return ((red << 16) | (blue << 8) | green);
 }
 
-int 		maxz(t_file *st)
+int			maxz(t_file *st)
 {
-	int 	max;
-	int 	i;
-	int 	j;
+	int		max;
+	int		i;
+	int		j;
 
 	i = 0;
 	max = 0;
@@ -81,14 +73,14 @@ int 		maxz(t_file *st)
 		}
 		i++;
 	}
-	return(max);
+	return (max);
 }
 
-int 		minz(t_file *st)
+int			minz(t_file *st)
 {
-	int 	min;
-	int 	i;
-	int 	j;
+	int		min;
+	int		i;
+	int		j;
 
 	i = 0;
 	min = 0;
@@ -103,5 +95,5 @@ int 		minz(t_file *st)
 		}
 		i++;
 	}
-	return(min);
+	return (min);
 }

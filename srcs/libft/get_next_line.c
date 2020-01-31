@@ -6,90 +6,82 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/24 10:36:28 by tzenz             #+#    #+#             */
-/*   Updated: 2019/10/16 11:51:21 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/01/31 19:10:40 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/libft.h"
 
-t_gnl				*ft_newlist(int fd)
+static t_gnl	*new_file(const int fd)
 {
-	t_gnl			*tmp;
+	t_gnl *new;
 
-	tmp = (t_gnl *)ft_memalloc(sizeof(t_gnl));
-	tmp->fd = fd;
-	tmp->res = NULL;
-	tmp->next = NULL;
-	return (tmp);
-}
-
-char				*ch(char *res, char **line)
-{
-	char			*tmp;
-
-	tmp = NULL;
-	if (res)
-		if ((tmp = ft_strchr(res, '\n')))
-		{
-			*tmp = '\0';
-			*line = ft_strdup(res);
-			ft_strcpy(res, ++tmp);
-		}
-		else
-		{
-			*line = ft_strdup(res);
-			while (*res)
-			{
-				*res = '\0';
-				res++;
-			}
-		}
-	else
-		*line = ft_strnew(1);
-	return (tmp);
-}
-
-int					get_line(const int fd, char **line, char **res)
-{
-	char			buf[BUFF_SIZE + 1];
-	char			*tmp;
-	char			*leak;
-	int				r;
-
-	tmp = ch(*res, line);
-	while (!tmp && (r = read(fd, buf, BUFF_SIZE)))
+	if ((new = (t_gnl *)ft_memalloc(sizeof(t_gnl))))
 	{
-		if (r < 0)
-			return (-1);
-		buf[r] = '\0';
-		if ((tmp = ft_strchr(buf, '\n')))
-		{
-			*tmp = '\0';
-			*res = ft_strdup(++tmp);
-		}
-		leak = *line;
-		if (!(*line = ft_strjoin(*line, buf)))
-			return (-1);
-		free(leak);
+		new->fd = fd;
+		new->str = NULL;
 	}
-	return (r || ft_strlen(*line)) ? 1 : 0;
+	return (new);
 }
 
-int					get_next_line(const int fd, char **line)
+static t_gnl	*get_file(const int fd, t_gnl **head)
 {
-	static t_gnl	*head;
-	t_gnl			*tmp;
+	t_gnl *lst;
 
-	if (line == 0 || fd < 0)
+	if (!(*head))
+		return (*head = new_file(fd));
+	lst = *head;
+	while (lst->next && lst->fd != fd)
+		lst = lst->next;
+	return ((lst->fd == fd) ? lst : (lst->next = new_file(fd)));
+}
+
+static int		str_divide(char **str, char **line)
+{
+	char	*new;
+	char	*div;
+
+	if (!(*line = ft_strsubchr(*str, '\n')))
 		return (-1);
-	if (!head)
-		head = ft_newlist(fd);
-	tmp = head;
-	while (tmp->fd != fd)
+	div = ft_strchrs(*str, '\n');
+	div++;
+	if (!ft_strlen(div))
 	{
-		if (tmp->next == NULL)
-			tmp->next = ft_newlist(fd);
-		tmp = tmp->next;
+		free(*str);
+		*str = NULL;
+		return (1);
 	}
-	return (get_line(tmp->fd, line, &tmp->res));
+	new = ft_strdup(div);
+	free(*str);
+	*str = new;
+	return ((new) ? 1 : -1);
+}
+
+int				get_next_line(const int fd, char **line)
+{
+	static t_gnl	*head = NULL;
+	t_gnl			*f;
+	char			buff[BUFF_SIZE + 1];
+	ssize_t			size;
+	char			*tmp;
+
+	if (fd < 0 || !line || read(fd, buff, 0) < 0 || !(f = get_file(fd, &head)))
+		return (-1);
+	while (!ft_strchrs(f->str, '\n'))
+	{
+		if (!(size = read(fd, buff, BUFF_SIZE)))
+		{
+			if (!(*line = f->str))
+				return (0);
+			f->str = NULL;
+			return (1);
+		}
+		buff[size] = '\0';
+		tmp = f->str;
+		f->str = ft_strjoin(f->str, buff);
+		free(tmp);
+		if (!f->str)
+			return (-1);
+	}
+	return (str_divide(&(f->str), line));
 }

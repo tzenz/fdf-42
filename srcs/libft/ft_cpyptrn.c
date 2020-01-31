@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/include/libft.h"
+#include "libft.h"
 
 char		**ft_cpyptrn(char **field, char **before)
 {

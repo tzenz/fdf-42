@@ -6,7 +6,7 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/30 11:24:57 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/31 16:01:28 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/02/01 17:09:34 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ void		rotate(t_cur *cur, t_file *st)
 	rotate_y(&cur->x1, &cur->z1, st->k->angle_y);
 	rotate_z(&cur->x, &cur->y, st->k->angle_z);
 	rotate_z(&cur->x1, &cur->y1, st->k->angle_z);
-	isometric(&cur->x, &cur->y, cur->z);
-	isometric(&cur->x1, &cur->y1, cur->z1);
+	if (st->iso == 1)
+	{
+		isometric(&cur->x, &cur->y, cur->z);
+		isometric(&cur->x1, &cur->y1, cur->z1);
+	}
 	cur->x += (((WIDTH - MENU_W) / 2) + MENU_W) + st->k->mx;
 	cur->x1 += (((WIDTH - MENU_W) / 2) + MENU_W) + st->k->mx;
 	cur->y += ((HIGHT + st->zoom * 10) / 2) + st->k->my;

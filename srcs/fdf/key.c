@@ -14,6 +14,13 @@
 
 void		key_3(int key, t_file *st)
 {
+	if (key == 34)
+	{
+		st->k->angle_x = 0;
+		st->k->angle_y = 0;
+		st->k->angle_z = 0;
+		st->iso = 1;
+	}
 	if (key == 89)
 		st->k->angle_x += 0.05;
 	if (key == 91)
@@ -30,6 +37,13 @@ void		key_3(int key, t_file *st)
 
 void		key_2(int key, t_file *st)
 {
+	if (key == 35)
+	{
+		st->k->angle_x = 0;
+		st->k->angle_y = 0;
+		st->k->angle_z = 0;
+		st->iso = 2;
+	}
 	if (key == 123)
 		st->k->mx -= 10;
 	if (key == 124)

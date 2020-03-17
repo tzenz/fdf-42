@@ -30,4 +30,7 @@ void		print_menu(t_file *st)
 	mlx_string_put(mlx, win, 57, y += 25, 0xEAEAEA, "X-Axis - 7/8");
 	mlx_string_put(mlx, win, 57, y += 25, 0xEAEAEA, "Y-Axis - 4/5");
 	mlx_string_put(mlx, win, 57, y += 25, 0xEAEAEA, "Z-Axis - 1/2");
+	mlx_string_put(mlx, win, 15, y += 30, 0xEAEAEA, "Projection");
+	mlx_string_put(mlx, win, 57, y += 25, 0xEAEAEA, "ISO: I Key");
+	mlx_string_put(mlx, win, 57, y += 25, 0xEAEAEA, "Parallel: P Key");
 }

@@ -6,12 +6,11 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 12:57:48 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/31 19:07:49 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/02/01 17:13:16 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 
 void		freebuf(char **buf, t_file *st)
 {
@@ -83,12 +82,45 @@ int			s_leght(char **argv)
 	return (lengt);
 }
 
+void		fd_check(char *argv)
+{
+	int		i;
+	int		r;
+	char	*point;
+
+	i = 0;
+	r = 0;
+	point = NULL;
+	while (argv[i])
+	{
+		if (argv[i] == '.')
+		{
+			r = 1;
+			if (!(point = ft_strstr(&argv[i], "fdf")))
+				r = -1;
+		}
+		i++;
+	}
+	if (r != 1 || (point && point[3]))
+	{
+		ft_putstr("incorrect MAP_FILE\n");
+		exit(0);
+	}
+}
+
 void		readfile(t_file *st, char **argv)
 {
 	char	*line;
+	char	buf[10];
 	int		fd;
 
 	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0 || (read(fd, buf, 5)) <= 0)
+	{
+		ft_putstr("incorrect MAP_FILE\n");
+		exit(0);
+	}
+	fd_check(argv[1]);
 	while (get_next_line(fd, &line))
 	{
 		st->hight++;

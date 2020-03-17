@@ -6,7 +6,7 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 11:53:18 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/31 16:24:36 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/02/01 15:22:55 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_file
 	int				zoom;
 	int				maxz;
 	int				minz;
+	int				iso;
 
 	int				color_start_x;
 	int				color_start_y;

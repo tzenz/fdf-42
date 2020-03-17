@@ -6,7 +6,7 @@
 /*   By: tzenz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/24 19:18:43 by tzenz             #+#    #+#             */
-/*   Updated: 2020/01/31 16:04:46 by tzenz            ###   ########.fr       */
+/*   Updated: 2020/02/01 17:09:44 by tzenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_file		*init(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr("exit\n");
+		ft_putstr("Usage:./fdf MAP_FILE\n");
 		exit(0);
 	}
 	st = (t_file *)ft_memalloc(sizeof(t_file));
@@ -65,6 +65,7 @@ t_file		*init(int argc, char **argv)
 	st->maxz = maxz(st) + MOD(minz(st));
 	st->minz = minz(st);
 	st->ziso = 1;
+	st->iso = 1;
 	return (st);
 }
 
